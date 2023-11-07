@@ -13,16 +13,17 @@ namespace EasyGroceries.Product.Infrastructure.Repositories
 {
     public class ProductInfoRepository : IProductInfoRepository
     {
-        private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
+
         public ProductInfoRepository(IConfiguration configuration)
         {
-            _configuration = configuration;
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
         public async Task<IReadOnlyList<ProductInfo>> GetAllProductsInfo()
         {
             var sql = "SELECT * FROM ProductInfo";
-            using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 var result = await connection.QueryAsync<ProductInfo>(sql);
@@ -33,7 +34,7 @@ namespace EasyGroceries.Product.Infrastructure.Repositories
         public async Task<ProductInfo> GetProductInfoById(int id)
         {
             var sql = "SELECT * FROM ProductInfo WHERE ProductId = @id";
-            using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 var result = await connection.QuerySingleOrDefaultAsync<ProductInfo>(sql, new { id });
