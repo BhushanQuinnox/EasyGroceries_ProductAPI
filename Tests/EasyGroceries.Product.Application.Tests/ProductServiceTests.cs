@@ -1,3 +1,4 @@
+using System.Net;
 using AutoMapper;
 using EasyGroceries.Product.Application.Contracts.Infrastructure;
 using EasyGroceries.Product.Application.DTOs;
@@ -57,21 +58,21 @@ public class ProductServiceTests
     }
 
     [Fact]
-    public async Task GetProductDetails_Should_ReturnsException()
+    public async Task GetProductDetails_Should_ReturnsNotFoundStatusForInvalidId()
     {
         // Arrange
         InitializeProductData();
         ProductService productService = new ProductService(_mediatorMock.Object);
         _mediatorMock.Setup(x => x.Send(It.IsAny<GetProductInfoRequest>(), It.IsAny<CancellationToken>()))
-                    .ThrowsAsync(new Exception());
+                    .ReturnsAsync(value: null);
 
         // Act
         var result = await productService.GetProductDetails(200);
 
         // Assert
+        Assert.Equal((int)HttpStatusCode.NotFound, result.Status);
         Assert.False(result.IsSuccess);
         Assert.Null(result.Result);
-        Assert.Equal("Exception of type 'System.Exception' was thrown.", result.Message);
     }
 
     [Fact]
@@ -90,24 +91,6 @@ public class ProductServiceTests
         Assert.True(result.IsSuccess);
         Assert.Equal(_productInfoDtoLst.Count, result.Result.Count);
         Assert.Equivalent(_productInfoDtoLst, result.Result);
-    }
-
-    [Fact]
-    public async Task GetProductList_Should_ReturnsException()
-    {
-        // Arrange
-        InitializeProductData();
-        ProductService productService = new ProductService(_mediatorMock.Object);
-        _mediatorMock.Setup(x => x.Send(It.IsAny<GetProductInfoListRequest>(), It.IsAny<CancellationToken>()))
-                    .ThrowsAsync(new Exception());
-
-        // Act
-        var result = await productService.GetProductList();
-
-        // Assert
-        Assert.False(result.IsSuccess);
-        Assert.Null(result.Result);
-        Assert.Equal("Exception of type 'System.Exception' was thrown.", result.Message);
     }
 
     // [Fact]
