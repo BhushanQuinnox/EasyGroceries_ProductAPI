@@ -36,7 +36,6 @@ public class GetProductInfoRequestHandlerTests
     {
         // Arrange
         InitializeProductData();
-        ProductInfoDto productInfoDto = new ProductInfoDto();
         int productInfoId = 103;
         var command = new GetProductInfoRequest() { Id = productInfoId };
         var productInfo = _productInfoLst.FirstOrDefault(x => x.ProductId == productInfoId);
@@ -67,7 +66,6 @@ public class GetProductInfoRequestHandlerTests
     {
         // Arrange
         InitializeProductData();
-        ProductInfoDto productInfoDto = new ProductInfoDto();
         int productInfoId = 200;
         var command = new GetProductInfoRequest() { Id = productInfoId };
         var productInfo = _productInfoLst.FirstOrDefault(x => x.ProductId == productInfoId);

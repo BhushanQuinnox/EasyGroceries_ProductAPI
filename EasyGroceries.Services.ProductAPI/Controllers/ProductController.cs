@@ -24,15 +24,6 @@ namespace EasyGroceries.Services.ProductAPI.Controllers
         public async Task<ResponseDto<List<ProductInfoDto>>> GetProducts()
         {
             var response = await _productService.GetProductList();
-            if (!response.IsSuccess)
-            {
-                response.Status = StatusCodes.Status500InternalServerError;
-            }
-            else
-            {
-                response.Status = StatusCodes.Status200OK;
-            }
-
             return response;
         }
 
@@ -41,15 +32,6 @@ namespace EasyGroceries.Services.ProductAPI.Controllers
         public async Task<ResponseDto<ProductInfoDto>> GetProductById(int id)
         {
             var response = await _productService.GetProductDetails(id);
-            if (!response.IsSuccess)
-            {
-                response.Status = StatusCodes.Status500InternalServerError;
-            }
-            else
-            {
-                response.Status = StatusCodes.Status200OK;
-            }
-
             return response;
         }
     }

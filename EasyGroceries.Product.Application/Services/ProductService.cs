@@ -1,4 +1,5 @@
-﻿using EasyGroceries.Product.Application.Contracts.Services;
+﻿using System.Net;
+using EasyGroceries.Product.Application.Contracts.Services;
 using EasyGroceries.Product.Application.DTOs;
 using EasyGroceries.Product.Application.Features.ProductInfo.Requests.Queries;
 using MediatR;
@@ -17,36 +18,23 @@ namespace EasyGroceries.Product.Application.Services
         public async Task<ResponseDto<ProductInfoDto>> GetProductDetails(int id)
         {
             ResponseDto<ProductInfoDto> response = new ResponseDto<ProductInfoDto>();
-
-            try
+            var productInfo = await _mediator.Send(new GetProductInfoRequest() { Id = id });
+            if (productInfo == null)
             {
-                var productInfo = await _mediator.Send(new GetProductInfoRequest() { Id = id });
-                response.Result = productInfo;
-            }
-            catch (Exception ex)
-            {
+                response.Message = $"No product found of id {id}";
+                response.Status = (int)HttpStatusCode.NotFound;
                 response.IsSuccess = false;
-                response.Message = ex.Message;
             }
 
+            response.Result = productInfo;
             return response;
         }
 
         public async Task<ResponseDto<List<ProductInfoDto>>> GetProductList()
         {
             ResponseDto<List<ProductInfoDto>> response = new ResponseDto<List<ProductInfoDto>>();
-
-            try
-            {
-                var productInfos = await _mediator.Send(new GetProductInfoListRequest());
-                response.Result = productInfos;
-            }
-            catch (Exception ex)
-            {
-                response.IsSuccess = false;
-                response.Message = ex.Message;
-            }
-
+            var productInfos = await _mediator.Send(new GetProductInfoListRequest());
+            response.Result = productInfos;
             return response;
         }
     }
