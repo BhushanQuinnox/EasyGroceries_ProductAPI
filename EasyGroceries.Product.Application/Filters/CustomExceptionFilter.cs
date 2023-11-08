@@ -74,7 +74,7 @@ namespace EasyGroceries.Product.Application.Filters
         {
             var objectResult = new ObjectResult(new
             {
-                Message = "An inetrnal server error occurred",
+                Message = "An internal server error occurred",
                 Detail = context.Exception.Message,
                 StatusCode = (int)HttpStatusCode.InternalServerError
             });
