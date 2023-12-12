@@ -1,4 +1,6 @@
 ﻿using EasyGroceries.Product.Application.Contracts.Infrastructure;
+using EasyGroceries.Product.Infrastructure.Contracts;
+using EasyGroceries.Product.Infrastructure.DBHandler;
 using EasyGroceries.Product.Infrastructure.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,7 @@ namespace EasyGroceries.Product.Persistence
         public static IServiceCollection ConfigureInfrastructureServices(this IServiceCollection services)
         {
             services.AddScoped<IProductInfoRepository, ProductInfoRepository>();
+            services.AddScoped<IDapper, DatabaseHandler>();
             return services;
         }
     }
