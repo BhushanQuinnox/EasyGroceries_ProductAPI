@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyGroceries.Product.Appli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyGroceries.Services.ProductAPI.Tests", "Tests\EasyGroceries.Services.ProductAPI.Tests\EasyGroceries.Services.ProductAPI.Tests.csproj", "{52849EC7-0BB7-4ACD-A813-E3FCD2436EA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyGroceries.Product.Infrastructure.Tests", "Tests\EasyGroceries.Product.Infrastructure.Tests\EasyGroceries.Product.Infrastructure.Tests.csproj", "{9A8F7DE5-A515-419E-833B-2664014B382C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{52849EC7-0BB7-4ACD-A813-E3FCD2436EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52849EC7-0BB7-4ACD-A813-E3FCD2436EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52849EC7-0BB7-4ACD-A813-E3FCD2436EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A8F7DE5-A515-419E-833B-2664014B382C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A8F7DE5-A515-419E-833B-2664014B382C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A8F7DE5-A515-419E-833B-2664014B382C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A8F7DE5-A515-419E-833B-2664014B382C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +63,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7CFDA9AD-5031-42FB-8EB7-AA6F05F2F342} = {F37BAF47-C314-4FD3-83D1-1103D4414F90}
 		{52849EC7-0BB7-4ACD-A813-E3FCD2436EA0} = {F37BAF47-C314-4FD3-83D1-1103D4414F90}
+		{9A8F7DE5-A515-419E-833B-2664014B382C} = {F37BAF47-C314-4FD3-83D1-1103D4414F90}
 	EndGlobalSection
 EndGlobal
